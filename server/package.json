@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "wrighterly fastify backend",
   "main": "src/index.js",
-  "author": "Vishal TK",
+  "author": "Heylel",
   "license": "MIT",
   "scripts": {
     "start": "node dist/index.js",

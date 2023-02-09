@@ -4,19 +4,19 @@
   "description": "write the (w)right way",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd wrighterly-server && yarn && cd .. && cd wrighterly-client && yarn",
-    "dev": "concurrently --kill-others -n CLIENT,SERVER -c green.bold,magenta.bold \"cd wrighterly-client && yarn dev\" \"cd wrighterly-server && yarn dev\""
+    "postinstall": "cd server && yarn && cd .. && cd client && yarn",
+    "dev": "concurrently --kill-others -n CLIENT,SERVER -c green.bold,magenta.bold \"cd client && yarn dev\" \"cd server && yarn dev\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sanvishal/wrighterly.git"
+    "url": "git+https://github.com/lucky-chap/wrighterly.git"
   },
-  "author": "Vishal TK",
+  "author": "Heylel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sanvishal/wrighterly/issues"
+    "url": "https://github.com/lucky-chap/wrighterly/issues"
   },
-  "homepage": "https://github.com/sanvishal/wrighterly#readme",
+  "homepage": "https://github.com/lucky-chap/wrighterly#readme",
   "dependencies": {
     "concurrently": "^7.3.0"
   }

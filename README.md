@@ -1,6 +1,6 @@
-## [Wrighterly - A Powerful Markdown Blogger & A Writing Companion ⚡](https://wrighterly.vercel.app/)
+## [Wrighterly](https://wrighterly.vercel.app/)
 
-- wrighterly has a powerful WYSIWYM markdown editor and a renderer (batteries included ⚡)
+- Wrighterly has a powerful WYSIWYM markdown editor and a renderer (batteries included ⚡)
 - It is optional signup, so you can use wrighterly offline too! or you can fork this project and use wrighterly standalone
 - wrighterly has a feature called [bites](https://wrighterly.vercel.app/bites), that allows you to gather & organize _bite_ sized ideas and later use them in your blogs
 - ...and a lot more features that aims to make modern writing easier and productive!
