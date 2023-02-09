@@ -1,6 +1,25 @@
-import { Box, Center, HStack, Icon, IconButton, Stack, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  HStack,
+  Icon,
+  IconButton,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { FiDelete, FiEdit, FiExternalLink, FiEye, FiEyeOff, FiHash, FiSettings, FiTrash2, FiX } from "react-icons/fi";
+import {
+  FiDelete,
+  FiEdit,
+  FiExternalLink,
+  FiEye,
+  FiEyeOff,
+  FiHash,
+  FiSettings,
+  FiTrash2,
+  FiX,
+} from "react-icons/fi";
 import { Wright } from "../../types";
 import { CustomToolTip } from "../CustomTooltip";
 // @ts-ignore
@@ -89,11 +108,21 @@ export const WrightCard = ({
                   label={
                     wright.isPublic
                       ? `this wright is public`
-                      : `this wright is private${!showSettings ? ", guest wrighters cannot make wright public" : ""}`
+                      : `this wright is private${
+                          !showSettings
+                            ? ", guest wrighterlys cannot make wright public"
+                            : ""
+                        }`
                   }
                 >
                   <Text as="span">
-                    <Icon as={wright?.isPublic ? FiEye : FiEyeOff} color="textLighter" opacity={0.6} w="0.74em" h="0.74em" />
+                    <Icon
+                      as={wright?.isPublic ? FiEye : FiEyeOff}
+                      color="textLighter"
+                      opacity={0.6}
+                      w="0.74em"
+                      h="0.74em"
+                    />
                   </Text>
                 </CustomToolTip>
               </Text>
@@ -102,10 +131,26 @@ export const WrightCard = ({
               {wright.tags && wright.tags.length > 0 ? (
                 wright?.tags.map((tag) => {
                   return (
-                    <Box key={tag.id} py={0} px={2} borderRadius={10} borderColor="containerBorder" bg="bgLight">
+                    <Box
+                      key={tag.id}
+                      py={0}
+                      px={2}
+                      borderRadius={10}
+                      borderColor="containerBorder"
+                      bg="bgLight"
+                    >
                       <HStack spacing={0.5}>
-                        <Icon as={FiHash} fontSize="12px" mb={0.5} color="textLighter" />
-                        <Text fontSize="sm" fontWeight="bold" color="textLighter">
+                        <Icon
+                          as={FiHash}
+                          fontSize="12px"
+                          mb={0.5}
+                          color="textLighter"
+                        />
+                        <Text
+                          fontSize="sm"
+                          fontWeight="bold"
+                          color="textLighter"
+                        >
                           {tag.name}
                         </Text>
                       </HStack>
@@ -113,7 +158,13 @@ export const WrightCard = ({
                   );
                 })
               ) : (
-                <Text color="textLighter" as="i" fontSize="sm" opacity="0.6" mt={-1}>
+                <Text
+                  color="textLighter"
+                  as="i"
+                  fontSize="sm"
+                  opacity="0.6"
+                  mt={-1}
+                >
                   untagged
                 </Text>
               )}
@@ -162,7 +213,11 @@ export const WrightCard = ({
               borderRadius="100px"
               aria-label="open wright"
               as="a"
-              href={!wright.isPublic ? "/wright?id=" + wright.id : "wright/" + wright.slug + `-${wright.id}`}
+              href={
+                !wright.isPublic
+                  ? "/wright?id=" + wright.id
+                  : "wright/" + wright.slug + `-${wright.id}`
+              }
               target="_blank"
               referrerPolicy="no-referrer"
             />

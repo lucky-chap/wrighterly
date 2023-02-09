@@ -1,6 +1,13 @@
 import { Box, useBreakpointValue } from "@chakra-ui/react";
 import { Editor as ByteMdEditor, EditorProps } from "@bytemd/react";
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import gfmPluin from "@bytemd/plugin-gfm";
 import highlightPlugin from "@bytemd/plugin-highlight-ssr";
 import mathPlugin from "@bytemd/plugin-math-ssr";
@@ -62,7 +69,10 @@ export const Editor = ({
   //   };
   // }, [id]);
 
-  const debouncedEditorOnChange = useMemo(() => debounce(editorOnChange, 500), [id]);
+  const debouncedEditorOnChange = useMemo(
+    () => debounce(editorOnChange, 500),
+    [id]
+  );
 
   useEffect(() => {
     if (initWright) {
@@ -89,7 +99,9 @@ export const Editor = ({
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${slugify((initWright.title || "") + " " + new Date().toDateString())}.md`;
+    link.download = `${slugify(
+      (initWright.title || "") + " " + new Date().toDateString()
+    )}.md`;
     link.click();
     window.URL.revokeObjectURL(url);
   };
@@ -109,7 +121,7 @@ export const Editor = ({
         mode={editorMode as EditorProps["mode"]}
         plugins={plugins}
         editorConfig={{
-          theme: "wrighter-dark",
+          theme: "wrighterly-dark",
           mode: {
             name: "gfm",
             highlightFormatting: true,

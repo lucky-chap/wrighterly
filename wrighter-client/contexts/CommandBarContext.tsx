@@ -1,5 +1,12 @@
 /* eslint-disable react/display-name */
-import { Box, Center, HStack, Text, useColorMode, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  HStack,
+  Text,
+  useColorMode,
+  VStack,
+} from "@chakra-ui/react";
 import {
   Action,
   ActionId,
@@ -38,7 +45,9 @@ const ResultItem = forwardRef(
   ) => {
     const ancestors = useMemo(() => {
       if (!currentRootActionId) return action.ancestors;
-      const index = action.ancestors.findIndex((ancestor) => ancestor.id === currentRootActionId);
+      const index = action.ancestors.findIndex(
+        (ancestor) => ancestor.id === currentRootActionId
+      );
       return action.ancestors.slice(index + 1);
     }, [action.ancestors, currentRootActionId]);
 
@@ -84,7 +93,9 @@ const ResultItem = forwardRef(
                       marginRight: 8,
                     }}
                   >
-                    {ancestor.name.length > 14 ? ancestor.name.slice(0, 14) + "…" : ancestor.name}
+                    {ancestor.name.length > 14
+                      ? ancestor.name.slice(0, 14) + "…"
+                      : ancestor.name}
                   </Text>
                   <span
                     style={{
@@ -100,7 +111,11 @@ const ResultItem = forwardRef(
             </Text>
           </div>
           {action.subtitle && (
-            <Text as="span" fontSize={{ base: "xs", md: "sm" }} color="textLighter">
+            <Text
+              as="span"
+              fontSize={{ base: "xs", md: "sm" }}
+              color="textLighter"
+            >
               {action.subtitle}
             </Text>
           )}
@@ -134,13 +149,23 @@ function RenderResults() {
             </Box>
           );
         }
-        return <ResultItem action={item} active={active} currentRootActionId={rootActionId} />;
+        return (
+          <ResultItem
+            action={item}
+            active={active}
+            currentRootActionId={rootActionId}
+          />
+        );
       }}
     />
   );
 }
 
-export const ActionsProvider = ({ children }: { children: React.ReactNode }) => {
+export const ActionsProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   // useWrightsSearch();
 
   return (
@@ -165,7 +190,11 @@ export const ActionsProvider = ({ children }: { children: React.ReactNode }) => 
   );
 };
 
-export const CommandBarProvider = ({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element => {
+export const CommandBarProvider = ({
+  children,
+}: {
+  children: JSX.Element | JSX.Element[];
+}): JSX.Element => {
   const router = useRouter();
   const { isAuth } = useUserContext();
 
@@ -209,7 +238,7 @@ export const CommandBarProvider = ({ children }: { children: JSX.Element | JSX.E
       },
       icon: <FiHome />,
       priority: Priority.LOW,
-      subtitle: "the landing page for wrighter",
+      subtitle: "the landing page for wrighterly",
     },
     {
       id: COMMAND_PARENT.BITE_ATTACH,
@@ -232,7 +261,10 @@ export const CommandBarProvider = ({ children }: { children: JSX.Element | JSX.E
   ];
 
   return (
-    <KBarProvider actions={routeActions} options={{ toggleShortcut: "$mod+Shift+P", enableHistory: true }}>
+    <KBarProvider
+      actions={routeActions}
+      options={{ toggleShortcut: "$mod+Shift+P", enableHistory: true }}
+    >
       <ActionsProvider>{children}</ActionsProvider>
     </KBarProvider>
   );

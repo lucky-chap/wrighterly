@@ -1,10 +1,22 @@
 import { Viewer } from "@bytemd/react";
-import { Box, Center, Container, IconButton, Spinner, Text, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Container,
+  IconButton,
+  Spinner,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { db, WrightIDB } from "../services/dbService";
-import { autoLinkHeadingsPlugin, figCaptionPlugin, pastePlugin } from "../services/pluginService";
+import {
+  autoLinkHeadingsPlugin,
+  figCaptionPlugin,
+  pastePlugin,
+} from "../services/pluginService";
 import mathPlugin from "@bytemd/plugin-math-ssr";
 import mediumZoom from "@bytemd/plugin-medium-zoom";
 import gfmPluin from "@bytemd/plugin-gfm";
@@ -86,9 +98,17 @@ export const LocalPreview = (): JSX.Element => {
         return (
           <>
             <Text fontSize="sm" color="textLighter" mb="-5px">
-              {new Date(localWright.updatedAt || new Date().toISOString()).toLocaleString()}
+              {new Date(
+                localWright.updatedAt || new Date().toISOString()
+              ).toLocaleString()}
             </Text>
-            <Text fontWeight="800" lineHeight="1.03" my={4} mb={8} fontSize={{ base: "2.1em", md: "6xl" }}>
+            <Text
+              fontWeight="800"
+              lineHeight="1.03"
+              my={4}
+              mb={8}
+              fontSize={{ base: "2.1em", md: "6xl" }}
+            >
               {localWright.title || ""}
             </Text>
             <Viewer value={localWright.content || ""} plugins={plugins} />
@@ -119,7 +139,7 @@ export const LocalPreview = (): JSX.Element => {
     if (localWright) {
       return localWright.title;
     }
-    return "wrighter • wright";
+    return "wrighterly • wright";
   };
 
   return (
@@ -140,9 +160,17 @@ export const LocalPreview = (): JSX.Element => {
       {isAuthenticated() && !isUserLoading && remoteWright ? (
         <>
           <Text fontSize="sm" color="textLighter" mb="-5px">
-            {new Date(remoteWright.updatedAt || new Date().toISOString()).toLocaleString()}
+            {new Date(
+              remoteWright.updatedAt || new Date().toISOString()
+            ).toLocaleString()}
           </Text>
-          <Text fontWeight="800" lineHeight="1.03" my={4} mb={8} fontSize={{ base: "2.1em", md: "6xl" }}>
+          <Text
+            fontWeight="800"
+            lineHeight="1.03"
+            my={4}
+            mb={8}
+            fontSize={{ base: "2.1em", md: "6xl" }}
+          >
             {remoteWright.title || ""}
           </Text>
           <Viewer value={remoteWright.content || ""} plugins={plugins} />

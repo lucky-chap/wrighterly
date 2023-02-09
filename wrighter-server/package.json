@@ -1,7 +1,7 @@
 {
-  "name": "wrighter-server",
+  "name": "wrighterly-server",
   "version": "1.0.0",
-  "description": "wrighter fastify backend",
+  "description": "wrighterly fastify backend",
   "main": "src/index.js",
   "author": "Vishal TK",
   "license": "MIT",

@@ -12,7 +12,7 @@ export class IDB extends Dexie {
   tagBite!: Table<TagBite>;
 
   constructor() {
-    super("wrighter");
+    super("wrighterly");
     this.version(2).stores({
       wrights: "++id, title, head, createdAt, updatedAt, userId, content",
       editorContext: "++id, title, head, createdAt, updatedAt, userId, content",

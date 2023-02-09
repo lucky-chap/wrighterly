@@ -11,10 +11,14 @@ const NewPage: NextPage = () => {
   const { isAuth, isUserLoading } = useUserContext();
   const router = useRouter();
 
-  const { refetch: createWrightRequest, isFetching: isCreating } = useQuery("createWrightQuery", () => createWright(!isAuth), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-  });
+  const { refetch: createWrightRequest, isFetching: isCreating } = useQuery(
+    "createWrightQuery",
+    () => createWright(!isAuth),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const createWrightHandler = async () => {
     const { data: wright } = await createWrightRequest();
@@ -32,7 +36,7 @@ const NewPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>wrighter • new</title>
+        <title>wrighterly • new</title>
       </Head>
       <Container maxW="5xl" centerContent mt={10}>
         <Center w="full">

@@ -1,22 +1,22 @@
 {
-  "name": "wrighter",
+  "name": "wrighterly",
   "version": "1.0.0",
   "description": "write the (w)right way",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd wrighter-server && yarn && cd .. && cd wrighter-client && yarn",
-    "dev": "concurrently --kill-others -n CLIENT,SERVER -c green.bold,magenta.bold \"cd wrighter-client && yarn dev\" \"cd wrighter-server && yarn dev\""
+    "postinstall": "cd wrighterly-server && yarn && cd .. && cd wrighterly-client && yarn",
+    "dev": "concurrently --kill-others -n CLIENT,SERVER -c green.bold,magenta.bold \"cd wrighterly-client && yarn dev\" \"cd wrighterly-server && yarn dev\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sanvishal/wrighter.git"
+    "url": "git+https://github.com/sanvishal/wrighterly.git"
   },
   "author": "Vishal TK",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sanvishal/wrighter/issues"
+    "url": "https://github.com/sanvishal/wrighterly/issues"
   },
-  "homepage": "https://github.com/sanvishal/wrighter#readme",
+  "homepage": "https://github.com/sanvishal/wrighterly#readme",
   "dependencies": {
     "concurrently": "^7.3.0"
   }

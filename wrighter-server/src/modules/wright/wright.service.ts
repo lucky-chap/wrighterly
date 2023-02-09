@@ -161,7 +161,7 @@ export const getWrightBySlug = async (slug: string) => {
   const { wrightId, slug: slugOnly } = splitSlug(slug);
   const wright = await prisma.wright.findFirst({
     where: { slug: slugOnly, id: wrightId },
-    include: { tagWrights: { select: { tag: true } }, wrighter: { select: { name: true } } },
+    include: { tagWrights: { select: { tag: true } }, wrighterly: { select: { name: true } } },
   });
   if (!wright) {
     return null;
@@ -173,7 +173,7 @@ export const getWrightBySlug = async (slug: string) => {
   const flattenedWright = {
     ...wright,
     tags: wright.tagWrights.map((tagWright) => tagWright.tag),
-    user: wright.wrighter.name,
+    user: wright.wrighterly.name,
   };
   return flattenedWright;
 };

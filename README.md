@@ -1,22 +1,16 @@
-[![wrighter-banner](https://imgur.com/mPITnEv.png)](https://wrighter.vercel.app/)
+## [Wrighterly - A Powerful Markdown Blogger & A Writing Companion ⚡](https://wrighterly.vercel.app/)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-## [Wrighter - A Powerful Markdown Blogger & A Writing Companion ⚡](https://wrighter.vercel.app/)
-
-- Wrighter has a powerful WYSIWYM markdown editor and a renderer (batteries included ⚡)
-- It is optional signup, so you can use wrighter offline too! or you can fork this project and use wrighter standalone
-- Wrighter has a feature called [bites](https://wrighter.vercel.app/bites), that allows you to gather & organize _bite_ sized ideas and later use them in your blogs
+- wrighterly has a powerful WYSIWYM markdown editor and a renderer (batteries included ⚡)
+- It is optional signup, so you can use wrighterly offline too! or you can fork this project and use wrighterly standalone
+- wrighterly has a feature called [bites](https://wrighterly.vercel.app/bites), that allows you to gather & organize _bite_ sized ideas and later use them in your blogs
 - ...and a lot more features that aims to make modern writing easier and productive!
-
-### To read more about it, visit [here](https://wrighter.vercel.app/wright/introducing-wrighter-a-powerful-markdown-blogger-and-a-writing-companion-6J96hd6t0pyy8wDFlkZUI0) or [here](https://vishaltk.hashnode.dev/introducing-wrighter-a-powerful-markdown-blogger-a-writing-companion)
 
 ## Setup
 
-- To run wrighter locally, you just need to clone the app
+- To run wrighterly locally, you just need to clone the app
 - ensure to install `prisma` and `tsnd` globally
 - run `yarn` on root directory, it will install all the deps for both client and server
-- create `.env.local` file in `wrighter-client` with
+- create `.env.local` file in `wrighterly-client` with
 
 ```
 API_BASE_URL="<INSERT BACKEND URL HERE>"
@@ -28,7 +22,7 @@ Example of configuration file:
 API_BASE_URL="http://localhost:8080/api"
 ```
 
-- create `.env` file in `wrighter-server` with
+- create `.env` file in `wrighterly-server` with
 
 ```
 DATABASE_URL="<INSERT DB URL HERE>"
@@ -39,13 +33,13 @@ COOKIE_SECRET="<COOKIE SECRET>"
 Example of configuration file:
 
 ```
-DATABASE_URL="mysql://wrighter_user:secrete_wrighter_pass@127.0.0.1:3306/wrighter_db"
-SECRET_KEY="SECRETkeyforwrighterapplication"
-COOKIE_SECRET="SECRETCookieforwrighterapplication"
+DATABASE_URL="mysql://wrighterly_user:secrete_wrighterly_pass@127.0.0.1:3306/wrighterly_db"
+SECRET_KEY="SECRETkeyforwrighterlyapplication"
+COOKIE_SECRET="SECRETCookieforwrighterlyapplication"
 ```
 
 - from the root directory, run `yarn dev`, it would concurrently run both the server and client
-- goto `localhost:3000` to see wrighter ✨
+- goto `localhost:3000` to see wrighterly ✨
 
 ## Contributing
 

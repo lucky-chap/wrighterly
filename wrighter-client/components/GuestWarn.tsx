@@ -17,13 +17,32 @@ import { useRef } from "react";
 import { FiCheck, FiX } from "react-icons/fi";
 import { logout } from "../services/authService";
 
-export const GuestWarn = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }): JSX.Element => {
+export const GuestWarn = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}): JSX.Element => {
   const initialRef = useRef<any>(null);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered size="lg" initialFocusRef={initialRef}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      isCentered
+      size="lg"
+      initialFocusRef={initialRef}
+    >
       <ModalOverlay />
-      <ModalContent borderRadius={10} bg="bgLighter" border="1px solid" borderColor="containerBorder" boxShadow="shadow" pb={4}>
+      <ModalContent
+        borderRadius={10}
+        bg="bgLighter"
+        border="1px solid"
+        borderColor="containerBorder"
+        boxShadow="shadow"
+        pb={4}
+      >
         <ModalHeader>
           <Text>About guest mode</Text>
         </ModalHeader>
@@ -34,7 +53,7 @@ export const GuestWarn = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
               <Center borderRadius="100px" w={6} h={6} bg="green.500">
                 <Icon as={FiCheck} strokeWidth={3} color="textColorWhite" />
               </Center>
-              <Text fontWeight="bold">All features of wrighter</Text>
+              <Text fontWeight="bold">All features of wrighterly</Text>
             </HStack>
             <HStack spacing={3}>
               <Center borderRadius="100px" w={6} h={6} bg="green.500">
@@ -52,12 +71,21 @@ export const GuestWarn = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
               <Center borderRadius="100px" w={6} h={6} bg="errorRed">
                 <Icon as={FiX} strokeWidth={3} color="textColorWhite" />
               </Center>
-              <Text fontWeight="bold">Access all your data on multiple devices</Text>
+              <Text fontWeight="bold">
+                Access all your data on multiple devices
+              </Text>
             </HStack>
           </VStack>
         </ModalBody>
         <ModalFooter>
-          <Button w="full" fontWeight="bold" as="a" href="/wrights" ref={initialRef} onClick={() => logout()}>
+          <Button
+            w="full"
+            fontWeight="bold"
+            as="a"
+            href="/wrights"
+            ref={initialRef}
+            onClick={() => logout()}
+          >
             Ok, Continue!
           </Button>
         </ModalFooter>

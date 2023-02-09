@@ -15,7 +15,14 @@ import debounce from "lodash.debounce";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Router, useRouter } from "next/router";
-import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { FiExternalLink, FiSettings, FiX } from "react-icons/fi";
 import { useQuery } from "react-query";
 import { Content } from "../components/Content";
@@ -28,7 +35,12 @@ import { useBiteActions } from "../contexts/CommandBarHooks/useBiteActions";
 import { useWrightingActions } from "../contexts/CommandBarHooks/useWrightingActions";
 import { useUserContext } from "../contexts/UserContext";
 import { db, WrightIDB } from "../services/dbService";
-import { clearAndCreateEditorContext, getWright, getWrightOnContext, saveWright } from "../services/wrightService";
+import {
+  clearAndCreateEditorContext,
+  getWright,
+  getWrightOnContext,
+  saveWright,
+} from "../services/wrightService";
 import { Wright } from "../types";
 
 const Wrighting: NextPage = () => {
@@ -39,7 +51,11 @@ const Wrighting: NextPage = () => {
   const [id, setId] = useState("");
   const [isContextLoaded, setIsContextLoaded] = useState(false);
   const toast = useToast();
-  const { isOpen: isSettingsOpen, onOpen: onSettingsOpen, onClose: onSettingsClose } = useDisclosure();
+  const {
+    isOpen: isSettingsOpen,
+    onOpen: onSettingsOpen,
+    onClose: onSettingsClose,
+  } = useDisclosure();
   const [syncContent, setSyncContent] = useState("");
 
   // useBiteActions();
@@ -48,10 +64,14 @@ const Wrighting: NextPage = () => {
     setTitle(value);
   };
 
-  const { refetch: getWrightRequest } = useQuery("getWrightQuery", () => getWright(!isAuthenticated(), id), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-  });
+  const { refetch: getWrightRequest } = useQuery(
+    "getWrightQuery",
+    () => getWright(!isAuthenticated(), id),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const getEditorContext = async () => {
     setIsContextLoaded(false);
@@ -66,7 +86,9 @@ const Wrighting: NextPage = () => {
         router.push("/wrights");
         toast({
           position: "bottom-right",
-          render: () => <Toaster message="wright with that id is not found!" type="error" />,
+          render: () => (
+            <Toaster message="wright with that id is not found!" type="error" />
+          ),
         });
       }
     }
@@ -93,12 +115,19 @@ const Wrighting: NextPage = () => {
     }
   };
 
-  const { refetch: saveWrightRequest } = useQuery("saveWrightQuery", () => saveWrightHandler(), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-  });
+  const { refetch: saveWrightRequest } = useQuery(
+    "saveWrightQuery",
+    () => saveWrightHandler(),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
-  const debouncedEditorOnSaveHandler = useMemo(() => debounce(saveWrightRequest, isAuthenticated() ? 1000 : 700), []);
+  const debouncedEditorOnSaveHandler = useMemo(
+    () => debounce(saveWrightRequest, isAuthenticated() ? 1000 : 700),
+    []
+  );
 
   const handleTitleSave = async (value: string) => {
     setTitle(value.trim());
@@ -132,7 +161,7 @@ const Wrighting: NextPage = () => {
   return (
     <Content isWide>
       <Head>
-        <title>wrighter • wrighting</title>
+        <title>wrighterly • wrighting</title>
       </Head>
       {!isContextLoaded ? (
         <Container maxWidth="full" centerContent mt={16}>
@@ -153,7 +182,13 @@ const Wrighting: NextPage = () => {
         </Container>
       ) : (
         <>
-          <Container maxW={{ base: "full", md: "5xl" }} px={0} pt={3} pos="relative" className="fade-in">
+          <Container
+            maxW={{ base: "full", md: "5xl" }}
+            px={0}
+            pt={3}
+            pos="relative"
+            className="fade-in"
+          >
             <Editable
               defaultValue={title}
               height={{ base: "48px", md: "58px" }}
@@ -170,7 +205,11 @@ const Wrighting: NextPage = () => {
                 overflowY="auto"
                 w="full"
                 height={{ base: "48px", md: "58px" }}
-                bg={title.trim().length <= 0 || title.trim().length > 200 ? "errorRedTransBg" : "transparent"}
+                bg={
+                  title.trim().length <= 0 || title.trim().length > 200
+                    ? "errorRedTransBg"
+                    : "transparent"
+                }
                 opacity={title.trim().length > 0 ? 1 : 0.15}
               />
               <EditableTextarea
@@ -180,12 +219,22 @@ const Wrighting: NextPage = () => {
                   boxShadow: "0 0 0 3px var(--chakra-colors-containerBorder)",
                 }}
                 height={{ base: "48px", md: "58px" }}
-                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => handleTitleChange(e.target.value || "")}
-                onBlur={() => handleTitleSave(title.trim().length ? title : "Give me a title")}
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                  handleTitleChange(e.target.value || "")
+                }
+                onBlur={() =>
+                  handleTitleSave(
+                    title.trim().length ? title : "Give me a title"
+                  )
+                }
               />
             </Editable>
             <Tags initWright={wright as Wright} />
-            <Editor editorOnSaveHandler={debouncedEditorOnSaveHandler} initWright={wright} onDestory={onEditorDestroy} />
+            <Editor
+              editorOnSaveHandler={debouncedEditorOnSaveHandler}
+              initWright={wright}
+              onDestory={onEditorDestroy}
+            />
             <Box pos="absolute" top="24px" left="0px">
               {isAuthenticated() && (
                 <WrightSettings

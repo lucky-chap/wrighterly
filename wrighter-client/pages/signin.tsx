@@ -27,7 +27,11 @@ import { Toaster } from "../components/Toaster";
 import { login, register } from "../services/authService";
 import { validateEmail } from "../utils";
 
-const LogInForm = ({ handleGotoSignUp }: { handleGotoSignUp: () => void }): JSX.Element => {
+const LogInForm = ({
+  handleGotoSignUp,
+}: {
+  handleGotoSignUp: () => void;
+}): JSX.Element => {
   const toast = useToast();
   const router = useRouter();
 
@@ -59,7 +63,10 @@ const LogInForm = ({ handleGotoSignUp }: { handleGotoSignUp: () => void }): JSX.
     });
   };
 
-  const { refetch: sendLoginRequest, isLoading } = useQuery<unknown, AxiosError<{ message: string }, unknown>>(
+  const { refetch: sendLoginRequest, isLoading } = useQuery<
+    unknown,
+    AxiosError<{ message: string }, unknown>
+  >(
     "loginQuery",
     () => login({ email: email.value, password: password.value }),
     { enabled: false, refetchOnWindowFocus: false, retry: false }
@@ -73,7 +80,13 @@ const LogInForm = ({ handleGotoSignUp }: { handleGotoSignUp: () => void }): JSX.
       toast({
         position: "bottom-right",
         render: () => (
-          <Toaster message={error.response?.data?.message || "Something bad happened! Please try again."} type="error" />
+          <Toaster
+            message={
+              error.response?.data?.message ||
+              "Something bad happened! Please try again."
+            }
+            type="error"
+          />
         ),
       });
     } else if (status === "success") {
@@ -88,14 +101,23 @@ const LogInForm = ({ handleGotoSignUp }: { handleGotoSignUp: () => void }): JSX.
       </Text>
       <Text fontWeight="bold" fontSize="md" color="textLight">
         or create an account &nbsp;
-        <span style={{ color: "var(--chakra-colors-accentColor)", cursor: "pointer" }} onClick={handleGotoSignUp}>
+        <span
+          style={{
+            color: "var(--chakra-colors-accentColor)",
+            cursor: "pointer",
+          }}
+          onClick={handleGotoSignUp}
+        >
           Register
         </span>
       </Text>
       <FormControl>
         <Box mb={5}>
           <FormLabel htmlFor="email" mb={1}>
-            Email &nbsp; <span style={{ color: "var(--chakra-colors-errorRed)" }}>{email.error}</span>
+            Email &nbsp;{" "}
+            <span style={{ color: "var(--chakra-colors-errorRed)" }}>
+              {email.error}
+            </span>
           </FormLabel>
           <Input
             borderColor="inputBorderColor"
@@ -109,12 +131,18 @@ const LogInForm = ({ handleGotoSignUp }: { handleGotoSignUp: () => void }): JSX.
                 handleLogin();
               }
             }}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleEmailChange(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleEmailChange(e.target.value)
+            }
           />
         </Box>
         <Box>
           <FormLabel htmlFor="password" mb={1}>
-            Password &nbsp; <span style={{ color: "var(--chakra-colors-errorRed)" }}> {password.error}</span>
+            Password &nbsp;{" "}
+            <span style={{ color: "var(--chakra-colors-errorRed)" }}>
+              {" "}
+              {password.error}
+            </span>
           </FormLabel>
           <Input
             borderColor="inputBorderColor"
@@ -128,7 +156,9 @@ const LogInForm = ({ handleGotoSignUp }: { handleGotoSignUp: () => void }): JSX.
                 handleLogin();
               }
             }}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handlePasswordChange(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handlePasswordChange(e.target.value)
+            }
           />
         </Box>
       </FormControl>
@@ -137,7 +167,14 @@ const LogInForm = ({ handleGotoSignUp }: { handleGotoSignUp: () => void }): JSX.
           className={errorAnimClass}
           onClick={handleLogin}
           isLoading={isLoading}
-          isDisabled={!(Boolean(email.value) && Boolean(password.value) && !Boolean(email.error) && !Boolean(password.error))}
+          isDisabled={
+            !(
+              Boolean(email.value) &&
+              Boolean(password.value) &&
+              !Boolean(email.error) &&
+              !Boolean(password.error)
+            )
+          }
           w="full"
           size="lg"
           fontSize="xl"
@@ -153,7 +190,11 @@ const LogInForm = ({ handleGotoSignUp }: { handleGotoSignUp: () => void }): JSX.
   );
 };
 
-const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.Element => {
+const SignUpForm = ({
+  handleGotoLogin,
+}: {
+  handleGotoLogin: () => void;
+}): JSX.Element => {
   const toast = useToast();
 
   const [errorAnimClass, setErrorAnimClass] = useState("");
@@ -167,7 +208,11 @@ const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.E
     const isNameTooLong = nameValue.length > 20;
     setName({
       value: nameValue,
-      error: isValidName ? (isNameTooLong ? "name is too long, could break the UI 😅" : "") : "enter a name",
+      error: isValidName
+        ? isNameTooLong
+          ? "name is too long, could break the UI 😅"
+          : ""
+        : "enter a name",
     });
   };
 
@@ -184,7 +229,11 @@ const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.E
     const isPasswordLengthValid = passwordValue.length >= 8;
     setPassword({
       value: passwordValue,
-      error: isValidPassword ? (!isPasswordLengthValid ? "password must be 8 characters minimum" : "") : "enter a password",
+      error: isValidPassword
+        ? !isPasswordLengthValid
+          ? "password must be 8 characters minimum"
+          : ""
+        : "enter a password",
     });
   };
 
@@ -209,9 +258,17 @@ const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.E
     );
   };
 
-  const { refetch: sendRegisterRequest, isLoading } = useQuery<unknown, AxiosError<{ message: string }, unknown>>(
+  const { refetch: sendRegisterRequest, isLoading } = useQuery<
+    unknown,
+    AxiosError<{ message: string }, unknown>
+  >(
     "registerQuery",
-    () => register({ email: email.value, password: password.value, name: name.value }),
+    () =>
+      register({
+        email: email.value,
+        password: password.value,
+        name: name.value,
+      }),
     { enabled: false, refetchOnWindowFocus: false }
   );
 
@@ -223,14 +280,25 @@ const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.E
       toast({
         position: "bottom-right",
         render: () => (
-          <Toaster message={error.response?.data?.message || "Something bad happened! Please try again."} type="error" />
+          <Toaster
+            message={
+              error.response?.data?.message ||
+              "Something bad happened! Please try again."
+            }
+            type="error"
+          />
         ),
       });
     } else if (status === "success") {
       handleGotoLogin();
       toast({
         position: "bottom-right",
-        render: () => <Toaster message="Account created! You can login now :)" type="success" />,
+        render: () => (
+          <Toaster
+            message="Account created! You can login now :)"
+            type="success"
+          />
+        ),
       });
     }
   };
@@ -238,21 +306,30 @@ const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.E
   return (
     <VStack p={3}>
       <Head>
-        <title>wrighter • signin</title>
+        <title>wrighterly • signin</title>
       </Head>
       <Text fontWeight={800} fontSize={{ base: "x-large", md: "xx-large" }}>
         Start Wrighting!
       </Text>
       <Text fontWeight="bold" fontSize="md" color="textLight">
         already have an account? &nbsp;
-        <span style={{ color: "var(--chakra-colors-accentColor)", cursor: "pointer" }} onClick={handleGotoLogin}>
+        <span
+          style={{
+            color: "var(--chakra-colors-accentColor)",
+            cursor: "pointer",
+          }}
+          onClick={handleGotoLogin}
+        >
           Login
         </span>
       </Text>
       <FormControl>
         <Box mb={5}>
           <FormLabel htmlFor="email" mb={1}>
-            Preferred Name &nbsp; <span style={{ color: "var(--chakra-colors-errorRed)" }}>{name.error}</span>
+            Preferred Name &nbsp;{" "}
+            <span style={{ color: "var(--chakra-colors-errorRed)" }}>
+              {name.error}
+            </span>
           </FormLabel>
           <Input
             borderColor="inputBorderColor"
@@ -261,12 +338,17 @@ const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.E
             id="email"
             required
             value={name.value}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleNameChange(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleNameChange(e.target.value)
+            }
           />
         </Box>
         <Box mb={5}>
           <FormLabel htmlFor="email" mb={1}>
-            Email &nbsp; <span style={{ color: "var(--chakra-colors-errorRed)" }}>{email.error}</span>
+            Email &nbsp;{" "}
+            <span style={{ color: "var(--chakra-colors-errorRed)" }}>
+              {email.error}
+            </span>
           </FormLabel>
           <Input
             borderColor="inputBorderColor"
@@ -275,12 +357,18 @@ const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.E
             id="email"
             required
             value={email.value}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleEmailChange(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleEmailChange(e.target.value)
+            }
           />
         </Box>
         <Box mb={5}>
           <FormLabel htmlFor="password" mb={1}>
-            Password &nbsp; <span style={{ color: "var(--chakra-colors-errorRed)" }}> {password.error}</span>
+            Password &nbsp;{" "}
+            <span style={{ color: "var(--chakra-colors-errorRed)" }}>
+              {" "}
+              {password.error}
+            </span>
           </FormLabel>
           <Input
             borderColor="inputBorderColor"
@@ -289,12 +377,18 @@ const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.E
             id="password"
             required
             value={password.value}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handlePasswordChange(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handlePasswordChange(e.target.value)
+            }
           />
         </Box>
         <Box>
           <FormLabel htmlFor="password2" mb={1}>
-            Password Again &nbsp; <span style={{ color: "var(--chakra-colors-errorRed)" }}> {password2.error}</span>
+            Password Again &nbsp;{" "}
+            <span style={{ color: "var(--chakra-colors-errorRed)" }}>
+              {" "}
+              {password2.error}
+            </span>
           </FormLabel>
           <Input
             borderColor="inputBorderColor"
@@ -303,7 +397,9 @@ const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.E
             id="password2"
             required
             value={password2.value}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handlePassword2Change(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handlePassword2Change(e.target.value)
+            }
           />
         </Box>
       </FormControl>
@@ -330,7 +426,11 @@ const SignUpForm = ({ handleGotoLogin }: { handleGotoLogin: () => void }): JSX.E
 
 export default function SignIn(): JSX.Element {
   const [tabIndex, setTabIndex] = useState(0);
-  const { isOpen: isGuestWarnOpen, onOpen: onGuestWarnOpen, onClose: onGuestWarnClose } = useDisclosure();
+  const {
+    isOpen: isGuestWarnOpen,
+    onOpen: onGuestWarnOpen,
+    onClose: onGuestWarnClose,
+  } = useDisclosure();
 
   return (
     <Container maxWidth="6xl" py={{ base: 3, md: 6 }}>
@@ -339,7 +439,7 @@ export default function SignIn(): JSX.Element {
           <Logo />
         </Box>
         <Text fontWeight="800" fontSize="xl">
-          wrighter
+          wrighterly
         </Text>
       </HStack>
       <Container mt={{ base: 14, md: 140 }} centerContent p={0}>

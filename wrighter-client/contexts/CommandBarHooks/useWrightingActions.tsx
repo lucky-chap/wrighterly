@@ -31,8 +31,13 @@ export const useWrightingActions = (exportHandler: () => void) => {
     for (let i = 1; i <= 6; i++) {
       headingActions.push({
         id: `wright-heading-${i}`,
-        icon: <FiType style={{ width: `${18 - i * 2}px`, height: `${18 - i * 2}px` }} color="var(--chakra-colors-accentColor)" />,
-        parent: "wrighter-heading",
+        icon: (
+          <FiType
+            style={{ width: `${18 - i * 2}px`, height: `${18 - i * 2}px` }}
+            color="var(--chakra-colors-accentColor)"
+          />
+        ),
+        parent: "wrighterly-heading",
         name: `Heading ${i}`,
         keywords: "headings title big small" + `h${i}`,
         priority: Priority.LOW,
@@ -54,7 +59,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
 
   const actions: Action[] = [
     {
-      id: "wrighter-bold",
+      id: "wrighterly-bold",
       name: "Bold",
       section: "Typography",
       keywords: "bold",
@@ -68,7 +73,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-italic",
+      id: "wrighterly-italic",
       name: "Italic",
       section: "Typography",
       priority: Priority.NORMAL,
@@ -82,7 +87,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-heading",
+      id: "wrighterly-heading",
       name: "Headings",
       section: "Typography",
       keywords: "headings title big",
@@ -92,7 +97,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
     },
     ...getHeadingActions(),
     {
-      id: "wrighter-quote",
+      id: "wrighterly-quote",
       name: "Blockquote",
       section: "Formatting",
       keywords: "quote blockquote format",
@@ -106,7 +111,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-link",
+      id: "wrighterly-link",
       name: "Add URL",
       section: "Formatting",
       keywords: "url link address",
@@ -125,7 +130,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-img",
+      id: "wrighterly-img",
       name: "Add Image Link",
       section: "Formatting",
       keywords: "url link address image attach",
@@ -144,7 +149,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-code",
+      id: "wrighterly-code",
       name: "Code",
       section: "Formatting",
       keywords: "code inline",
@@ -158,7 +163,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-code-block",
+      id: "wrighterly-code-block",
       name: "Code Block",
       section: "Formatting",
       keywords: "code block language",
@@ -169,17 +174,23 @@ export const useWrightingActions = (exportHandler: () => void) => {
         if (window.cm) {
           if (window.cm.editor.getSelection().length === 0) {
             const pos = window.cm.appendBlock("```js\n```");
-            window.cm.editor.setSelection(window.cm.codemirror.Pos(pos.line, 3), window.cm.codemirror.Pos(pos.line, 5));
+            window.cm.editor.setSelection(
+              window.cm.codemirror.Pos(pos.line, 3),
+              window.cm.codemirror.Pos(pos.line, 5)
+            );
           } else {
             const pos = window.cm.editor.getCursor();
             window.cm.replaceLines((line) => "```js\n" + line + "\n```");
-            window.cm.editor.setSelection(window.cm.codemirror.Pos(pos.line, 3), window.cm.codemirror.Pos(pos.line, 5));
+            window.cm.editor.setSelection(
+              window.cm.codemirror.Pos(pos.line, 3),
+              window.cm.codemirror.Pos(pos.line, 5)
+            );
           }
         }
       },
     },
     {
-      id: "wrighter-ul",
+      id: "wrighterly-ul",
       name: "Unordered List Item",
       section: "Formatting",
       keywords: "item list ul unordered bulletin",
@@ -193,7 +204,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-ol",
+      id: "wrighterly-ol",
       name: "Ordered List Item",
       section: "Formatting",
       keywords: "item list ol ordered bulletin numbering",
@@ -207,7 +218,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-strike",
+      id: "wrighterly-strike",
       name: "StrikeThrough",
       section: "Formatting",
       keywords: "strike mistake dash",
@@ -221,7 +232,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-todo",
+      id: "wrighterly-todo",
       name: "Add Todo Item",
       section: "Extras",
       keywords: "todo item done check",
@@ -235,7 +246,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-table",
+      id: "wrighterly-table",
       name: "Add Table",
       section: "Extras",
       keywords: "table data columns rows",
@@ -244,13 +255,18 @@ export const useWrightingActions = (exportHandler: () => void) => {
       priority: Priority.NORMAL,
       perform: () => {
         if (window.cm) {
-          const { line } = window.cm.appendBlock(`| heading |  |\n| --- | --- |\n|  |  |\n`);
-          window.cm.editor.setSelection(window.cm.codemirror.Pos(line, 2), window.cm.codemirror.Pos(line, 2 + "heading".length));
+          const { line } = window.cm.appendBlock(
+            `| heading |  |\n| --- | --- |\n|  |  |\n`
+          );
+          window.cm.editor.setSelection(
+            window.cm.codemirror.Pos(line, 2),
+            window.cm.codemirror.Pos(line, 2 + "heading".length)
+          );
         }
       },
     },
     {
-      id: "wrighter-formula-inline",
+      id: "wrighterly-formula-inline",
       name: "Inline Formula",
       section: "Extras",
       keywords: "math formula katex inline",
@@ -264,7 +280,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-formula-block",
+      id: "wrighterly-formula-block",
       name: "Formula Block",
       section: "Extras",
       keywords: "math formula katex block",
@@ -274,12 +290,15 @@ export const useWrightingActions = (exportHandler: () => void) => {
       perform: () => {
         if (window.cm) {
           const { line } = window.cm.appendBlock("$$\n\\TeX\n$$");
-          window.cm.editor.setSelection(window.cm.codemirror.Pos(line + 1, 0), window.cm.codemirror.Pos(line + 1, 4));
+          window.cm.editor.setSelection(
+            window.cm.codemirror.Pos(line + 1, 0),
+            window.cm.codemirror.Pos(line + 1, 4)
+          );
         }
       },
     },
     {
-      id: "wrighter-bold-sentence",
+      id: "wrighterly-bold-sentence",
       name: "Make Paragraph bold",
       section: "Extras",
       keywords: "bold text paragraph",
@@ -296,7 +315,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-fullscreen",
+      id: "wrighterly-fullscreen",
       name: "Focus Mode",
       section: "This Wright",
       keywords: "focus mode fullscreen distraction",
@@ -307,12 +326,14 @@ export const useWrightingActions = (exportHandler: () => void) => {
         if (window.cm) {
           // hackiest piece of code ever
           // @ts-ignore
-          document.querySelector('.bytemd-toolbar-right > [bytemd-tippy-path="4"]')?.click?.();
+          document
+            .querySelector('.bytemd-toolbar-right > [bytemd-tippy-path="4"]')
+            ?.click?.();
         }
       },
     },
     {
-      id: "wrighter-export",
+      id: "wrighterly-export",
       name: "Export as MD",
       section: "This Wright",
       keywords: "export download markdown blog import",
@@ -324,7 +345,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
       },
     },
     {
-      id: "wrighter-preview",
+      id: "wrighterly-preview",
       name: "Preview",
       section: "This Wright",
       keywords: "preview toggle write markdown",
@@ -335,7 +356,9 @@ export const useWrightingActions = (exportHandler: () => void) => {
         if (window.cm) {
           // hackiest piece of code ever
           // @ts-ignore
-          document.querySelector('.bytemd-toolbar-right > [bytemd-tippy-path="3"]')?.click?.();
+          document
+            .querySelector('.bytemd-toolbar-right > [bytemd-tippy-path="3"]')
+            ?.click?.();
         }
       },
     },

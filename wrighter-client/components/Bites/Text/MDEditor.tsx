@@ -9,11 +9,20 @@ import { pastePlugin } from "../../../services/pluginService";
 import { BiteType } from "../../../types";
 
 const TEXT_LIMIT = 960;
-export const MDEditor = ({ onContentSet }: { onContentSet: (content: string, type: BiteType) => void }): JSX.Element => {
+export const MDEditor = ({
+  onContentSet,
+}: {
+  onContentSet: (content: string, type: BiteType) => void;
+}): JSX.Element => {
   const [content, setContent] = useState("");
 
   const plugins = useMemo(
-    () => [pastePlugin({ injectCM: false }), highlightPlugin(), gfmPluin(), mathPlugin({ katexOptions: { output: "html" } })],
+    () => [
+      pastePlugin({ injectCM: false }),
+      highlightPlugin(),
+      gfmPluin(),
+      mathPlugin({ katexOptions: { output: "html" } }),
+    ],
     []
   );
 
@@ -25,7 +34,10 @@ export const MDEditor = ({ onContentSet }: { onContentSet: (content: string, typ
     onContentSet(content, BiteType.TEXT);
   };
 
-  const debouncedOnEditorChange = useMemo(() => debounce(onEditorChange, 800), [onEditorChange]);
+  const debouncedOnEditorChange = useMemo(
+    () => debounce(onEditorChange, 800),
+    [onEditorChange]
+  );
 
   useEffect(() => {
     debouncedOnEditorChange();
@@ -42,7 +54,7 @@ export const MDEditor = ({ onContentSet }: { onContentSet: (content: string, typ
           key="editor"
           plugins={plugins}
           editorConfig={{
-            theme: "wrighter-dark",
+            theme: "wrighterly-dark",
             mode: {
               name: "gfm",
               highlightFormatting: true,
@@ -52,7 +64,12 @@ export const MDEditor = ({ onContentSet }: { onContentSet: (content: string, typ
           }}
         />
       </Box>
-      <Text color={content.length > TEXT_LIMIT ? "errorRed" : "textColor"} textAlign="right" w="full" fontSize="lg">
+      <Text
+        color={content.length > TEXT_LIMIT ? "errorRed" : "textColor"}
+        textAlign="right"
+        w="full"
+        fontSize="lg"
+      >
         {content.length}/{TEXT_LIMIT}
       </Text>
     </VStack>

@@ -20,7 +20,17 @@ import Avvvatars from "avvvatars-react";
 import { useKBar } from "kbar";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { FiBookOpen, FiCloud, FiCommand, FiDatabase, FiHash, FiKey, FiLogOut, FiMoon, FiSun } from "react-icons/fi";
+import {
+  FiBookOpen,
+  FiCloud,
+  FiCommand,
+  FiDatabase,
+  FiHash,
+  FiKey,
+  FiLogOut,
+  FiMoon,
+  FiSun,
+} from "react-icons/fi";
 import { TbBulb } from "react-icons/tb";
 import { useQueryClient } from "react-query";
 import { useUserContext } from "../contexts/UserContext";
@@ -38,7 +48,12 @@ export const MobileNav = (): JSX.Element => {
   const queryclient = useQueryClient();
   const isSaving = queryclient.getQueryState("saveWrightQuery")?.isFetching;
   const { query } = useKBar();
-  const { isOpen: isTagTreeOpen, onOpen: onTagTreeOpen, onClose: onTagTreeClose, onToggle: onTagTreeToggle } = useDisclosure();
+  const {
+    isOpen: isTagTreeOpen,
+    onOpen: onTagTreeOpen,
+    onClose: onTagTreeClose,
+    onToggle: onTagTreeToggle,
+  } = useDisclosure();
 
   const handleLogOut = async () => {
     setIsLoggingOut(true);
@@ -51,10 +66,30 @@ export const MobileNav = (): JSX.Element => {
 
   return (
     <>
-      <Box w="full" h={14} bg="bgDark" pos="fixed" bottom="0" borderTopRadius={10} zIndex={2}>
-        <Flex alignItems="center" justifyContent="space-between" w="full" flexDirection="row" px={2} h="full">
+      <Box
+        w="full"
+        h={14}
+        bg="bgDark"
+        pos="fixed"
+        bottom="0"
+        borderTopRadius={10}
+        zIndex={2}
+      >
+        <Flex
+          alignItems="center"
+          justifyContent="space-between"
+          w="full"
+          flexDirection="row"
+          px={2}
+          h="full"
+        >
           <HStack spacing={4} h="full">
-            <Center w="40px" h="40px" cursor="pointer" onClick={() => query.toggle()}>
+            <Center
+              w="40px"
+              h="40px"
+              cursor="pointer"
+              onClick={() => query.toggle()}
+            >
               <Logo />
             </Center>
             <Box w={0.5} h={9} bg="bgLight" borderRadius={10} ml={3} />
@@ -66,7 +101,11 @@ export const MobileNav = (): JSX.Element => {
                   router.push("/bites", undefined, { shallow: true });
                 }}
                 bg={router.pathname === "/bites" ? "biteAccentColorTrans" : ""}
-                color={router.pathname === "/bites" ? "biteAccentColor" : "textLighter"}
+                color={
+                  router.pathname === "/bites"
+                    ? "biteAccentColor"
+                    : "textLighter"
+                }
                 size="sm"
                 role="group"
               >
@@ -80,8 +119,14 @@ export const MobileNav = (): JSX.Element => {
                 onClick={() => {
                   router.push("/wrights", undefined, { shallow: true });
                 }}
-                bg={router.pathname.includes("/wright") ? "accentColorTrans" : ""}
-                color={router.pathname.includes("/wright") ? "accentColor" : "textLighter"}
+                bg={
+                  router.pathname.includes("/wright") ? "accentColorTrans" : ""
+                }
+                color={
+                  router.pathname.includes("/wright")
+                    ? "accentColor"
+                    : "textLighter"
+                }
                 size="sm"
                 role="group"
               >
@@ -129,8 +174,20 @@ export const MobileNav = (): JSX.Element => {
                 />
               ) : (
                 <>
-                  <Box w="5px" h="5px" bg="green.400" borderRadius={100} pos="absolute" bottom="8px" right="0px"></Box>
-                  <Icon as={isAuthenticated() ? FiCloud : FiDatabase} strokeWidth={2.5} color="textLighter" />
+                  <Box
+                    w="5px"
+                    h="5px"
+                    bg="green.400"
+                    borderRadius={100}
+                    pos="absolute"
+                    bottom="8px"
+                    right="0px"
+                  ></Box>
+                  <Icon
+                    as={isAuthenticated() ? FiCloud : FiDatabase}
+                    strokeWidth={2.5}
+                    color="textLighter"
+                  />
                 </>
               )}
             </Box>
@@ -138,19 +195,32 @@ export const MobileNav = (): JSX.Element => {
               <Menu placement="top-start">
                 <MenuButton>
                   <Box cursor="pointer">
-                    <Avvvatars value={user?.email || "wrighter guest"} style="shape" />
+                    <Avvvatars
+                      value={user?.email || "wrighterly guest"}
+                      style="shape"
+                    />
                   </Box>
                 </MenuButton>
                 <MenuList minWidth="190px">
                   <MenuItem isDisabled fontSize="sm">
-                    {user?.name || "wrighter guest"}
+                    {user?.name || "wrighterly guest"}
                   </MenuItem>
-                  <MenuDivider borderColor="containerBorder" opacity={1} my={1.5} />
+                  <MenuDivider
+                    borderColor="containerBorder"
+                    opacity={1}
+                    my={1.5}
+                  />
                   <MenuItem
                     role="group"
                     closeOnSelect={false}
                     onClick={toggleColorMode}
-                    icon={<Icon as={colorMode === "light" ? FiMoon : FiSun} strokeWidth={2.5} mt={1} />}
+                    icon={
+                      <Icon
+                        as={colorMode === "light" ? FiMoon : FiSun}
+                        strokeWidth={2.5}
+                        mt={1}
+                      />
+                    }
                   >
                     Toggle theme
                   </MenuItem>
@@ -195,7 +265,12 @@ export const MobileNav = (): JSX.Element => {
           </HStack>
         </Flex>
       </Box>
-      <TagTree isOpen={isTagTreeOpen} onOpen={onTagTreeOpen} onClose={onTagTreeClose} isMobile />
+      <TagTree
+        isOpen={isTagTreeOpen}
+        onOpen={onTagTreeOpen}
+        onClose={onTagTreeClose}
+        isMobile
+      />
     </>
   );
 };
@@ -209,7 +284,12 @@ export const Navbar = () => {
   const queryclient = useQueryClient();
   const isSaving = queryclient.getQueryState("saveWrightQuery")?.isFetching;
   const { query } = useKBar();
-  const { isOpen: isTagTreeOpen, onOpen: onTagTreeOpen, onClose: onTagTreeClose, onToggle: onTagTreeToggle } = useDisclosure();
+  const {
+    isOpen: isTagTreeOpen,
+    onOpen: onTagTreeOpen,
+    onClose: onTagTreeClose,
+    onToggle: onTagTreeToggle,
+  } = useDisclosure();
 
   const handleLogOut = async () => {
     setIsLoggingOut(true);
@@ -234,9 +314,21 @@ export const Navbar = () => {
         zIndex={9}
         id="navbar"
       >
-        <Flex alignItems="center" pos="fixed" w={14} justifyContent="space-between" h="full" flexDirection="column">
+        <Flex
+          alignItems="center"
+          pos="fixed"
+          w={14}
+          justifyContent="space-between"
+          h="full"
+          flexDirection="column"
+        >
           <VStack spacing={4}>
-            <Center w="40px" h="40px" cursor="pointer" onClick={() => query.toggle()}>
+            <Center
+              w="40px"
+              h="40px"
+              cursor="pointer"
+              onClick={() => query.toggle()}
+            >
               <Logo />
             </Center>
             <Box w={9} h={0.5} bg="bgLight" borderRadius={10} mb={3} />
@@ -248,10 +340,22 @@ export const Navbar = () => {
                   onClick={() => {
                     router.push("/bites", undefined, { shallow: true });
                   }}
-                  _hover={{ bg: "biteAccentColorTrans", color: "biteAccentColor" }}
-                  _focus={{ bg: "biteAccentColorTrans", color: "biteAccentColor" }}
-                  bg={router.pathname === "/bites" ? "biteAccentColorTrans" : ""}
-                  color={router.pathname === "/bites" ? "biteAccentColor" : "textLighter"}
+                  _hover={{
+                    bg: "biteAccentColorTrans",
+                    color: "biteAccentColor",
+                  }}
+                  _focus={{
+                    bg: "biteAccentColorTrans",
+                    color: "biteAccentColor",
+                  }}
+                  bg={
+                    router.pathname === "/bites" ? "biteAccentColorTrans" : ""
+                  }
+                  color={
+                    router.pathname === "/bites"
+                      ? "biteAccentColor"
+                      : "textLighter"
+                  }
                   size="sm"
                   role="group"
                 >
@@ -266,8 +370,16 @@ export const Navbar = () => {
                   variant="ghost"
                   _hover={{ bg: "accentColorTrans", color: "accentColor" }}
                   _focus={{ bg: "accentColorTrans", color: "accentColor" }}
-                  bg={router.pathname.includes("/wright") ? "accentColorTrans" : ""}
-                  color={router.pathname.includes("/wright") ? "accentColor" : "textLighter"}
+                  bg={
+                    router.pathname.includes("/wright")
+                      ? "accentColorTrans"
+                      : ""
+                  }
+                  color={
+                    router.pathname.includes("/wright")
+                      ? "accentColor"
+                      : "textLighter"
+                  }
                   onClick={() => {
                     router.push("/wrights", undefined, { shallow: true });
                   }}
@@ -302,7 +414,10 @@ export const Navbar = () => {
             </Box>
           </VStack>
           <VStack pb={5} spacing={4}>
-            <CustomToolTip label="open command bar (cmd or ctrl + shift + p)" placement="right">
+            <CustomToolTip
+              label="open command bar (cmd or ctrl + shift + p)"
+              placement="right"
+            >
               <Box>
                 <IconButton
                   aria-label="open command bar (cmd or ctrl + shift + p)"
@@ -340,8 +455,20 @@ export const Navbar = () => {
                   />
                 ) : (
                   <>
-                    <Box w="5px" h="5px" bg="green.400" borderRadius={100} pos="absolute" bottom="8px" right="0px"></Box>
-                    <Icon as={isAuthenticated() ? FiCloud : FiDatabase} strokeWidth={2.5} color="textLighter" />
+                    <Box
+                      w="5px"
+                      h="5px"
+                      bg="green.400"
+                      borderRadius={100}
+                      pos="absolute"
+                      bottom="8px"
+                      right="0px"
+                    ></Box>
+                    <Icon
+                      as={isAuthenticated() ? FiCloud : FiDatabase}
+                      strokeWidth={2.5}
+                      color="textLighter"
+                    />
                   </>
                 )}
               </Box>
@@ -350,19 +477,32 @@ export const Navbar = () => {
               <Menu placement="right">
                 <MenuButton>
                   <Box cursor="pointer">
-                    <Avvvatars value={user?.email || "wrighter guest"} style="shape" />
+                    <Avvvatars
+                      value={user?.email || "wrighterly guest"}
+                      style="shape"
+                    />
                   </Box>
                 </MenuButton>
                 <MenuList minWidth="190px">
                   <MenuItem isDisabled fontSize="sm">
-                    {user?.name || "wrighter guest"}
+                    {user?.name || "wrighterly guest"}
                   </MenuItem>
-                  <MenuDivider borderColor="containerBorder" opacity={1} my={1.5} />
+                  <MenuDivider
+                    borderColor="containerBorder"
+                    opacity={1}
+                    my={1.5}
+                  />
                   <MenuItem
                     role="group"
                     closeOnSelect={false}
                     onClick={toggleColorMode}
-                    icon={<Icon as={colorMode === "light" ? FiMoon : FiSun} strokeWidth={2.5} mt={1} />}
+                    icon={
+                      <Icon
+                        as={colorMode === "light" ? FiMoon : FiSun}
+                        strokeWidth={2.5}
+                        mt={1}
+                      />
+                    }
                   >
                     Toggle theme
                   </MenuItem>
@@ -407,7 +547,12 @@ export const Navbar = () => {
           </VStack>
         </Flex>
       </Box>
-      <TagTree isOpen={isTagTreeOpen} onOpen={onTagTreeOpen} onClose={onTagTreeClose} isMobile={false} />
+      <TagTree
+        isOpen={isTagTreeOpen}
+        onOpen={onTagTreeOpen}
+        onClose={onTagTreeClose}
+        isMobile={false}
+      />
     </>
   );
 };
