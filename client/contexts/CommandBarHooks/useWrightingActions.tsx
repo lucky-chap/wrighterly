@@ -327,8 +327,7 @@ export const useWrightingActions = (exportHandler: () => void) => {
           // hackiest piece of code ever
           // @ts-ignore
           document
-            .querySelector('.bytemd-toolbar-right > [bytemd-tippy-path="4"]')
-            ?.click?.();
+            .querySelector('.bytemd-toolbar-right > [bytemd-tippy-path="4"]')?.click?.();
         }
       },
     },
